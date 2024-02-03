@@ -1,8 +1,5 @@
 package com.boardcamp.api.model;
 
-import java.math.BigDecimal;
-
-import com.boardcamp.api.dto.GamesDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

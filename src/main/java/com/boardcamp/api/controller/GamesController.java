@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.boardcamp.api.dto.GameResponseDTO;
 import com.boardcamp.api.dto.GamesDTO;
-import com.boardcamp.api.model.GamesModel;
 
 import com.boardcamp.api.services.GameService;
 
