@@ -5,18 +5,18 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class GamesDTO {
-
-    @NotBlank
+    @NotNull(message = "Name must not be null")
+    @NotBlank(message = "Name must not be blank")
     @Size(max = 255, message = "Maximum length for name is 255 characters")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Image must not be blank")
     private String image;
 
-    @NotNull
+    @NotNull(message = "StockTotal must not be null")
     private int stockTotal;
 
-    @NotNull
+    @NotNull(message = "PricePerDay must not be null")
     private int pricePerDay;
 
     public String getName() {

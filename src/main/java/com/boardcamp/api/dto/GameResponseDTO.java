@@ -8,7 +8,6 @@ public class GameResponseDTO {
     private int pricePerDay;
 
 
-    // Exemplo de construtor
     public GameResponseDTO(Long id, String name, String image, int stockTotal, int pricePerDay) {
         this.id = id;
         this.name = name;

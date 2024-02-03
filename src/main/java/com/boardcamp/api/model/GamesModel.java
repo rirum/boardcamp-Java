@@ -5,8 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "tweets")
+
 public class GamesModel {
 
     @Id
@@ -17,11 +26,9 @@ public class GamesModel {
     private int stockTotal;
     private int pricePerDay;
 
-    // Construtores
 
-    public GamesModel() {
-        // Construtor vazio para JPA
-    }
+
+ 
 
     public GamesModel(String name, String image, int stockTotal, int pricePerDay) {
         this.name = name;
@@ -30,7 +37,7 @@ public class GamesModel {
         this.pricePerDay = pricePerDay;
     }
 
-    // Getters e Setters
+ 
 
     public Long getId() {
         return id;
