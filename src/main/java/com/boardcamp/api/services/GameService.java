@@ -1,6 +1,8 @@
 package com.boardcamp.api.services;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,25 @@ public class GameService {
     GameService(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
+    
+ public List<GameResponseDTO> getAllGames() {
+        List<GamesModel> games = gameRepository.findAll();
+        return games.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    private GameResponseDTO convertToDto(GamesModel gameModel) {
+        // Implemente a conversão de GamesModel para GameResponseDTO aqui
+        return new GameResponseDTO(
+                gameModel.getId(),
+                gameModel.getName(),
+                gameModel.getImage(),
+                gameModel.getStockTotal(),
+                gameModel.getPricePerDay()
+        );
+    }
+
 
     @Transactional
     public GameResponseDTO createGame(GamesDTO dto) {
