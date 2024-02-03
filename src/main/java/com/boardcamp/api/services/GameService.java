@@ -48,6 +48,7 @@ public class GameService {
     @Transactional
     public GameResponseDTO createGame(GamesDTO dto) {
 
+       
         if (dto.getName() == null || dto.getName().isEmpty()) {
             throw new EmptyNameException("Name must not be null or empty");
         }
