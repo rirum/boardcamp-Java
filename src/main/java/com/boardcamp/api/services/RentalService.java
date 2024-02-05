@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.boardcamp.api.dto.RentalDTO;
 import com.boardcamp.api.exceptions.EmptyFieldException;
 import com.boardcamp.api.exceptions.GameUnavailableException;
+import com.boardcamp.api.exceptions.InvalidGameIdException;
 import com.boardcamp.api.exceptions.NegativeValueException;
 import com.boardcamp.api.model.CustomerModel;
 import com.boardcamp.api.model.GamesModel;
@@ -57,6 +58,11 @@ public class RentalService {
         if (rentalDTO.getDaysRented() <= 0) {
             throw new NegativeValueException("DaysRented should be greater than 0");
         }
+
+        if (rentalDTO.getGameId() <= 0) {
+            throw new InvalidGameIdException("gameId should be greater than 0");
+        }
+
         if (rentalDTO.getCustomerId() == null || rentalDTO.getGameId() == null) {
             throw new EmptyFieldException("CustomerId and GameId cannot be null");
         }
