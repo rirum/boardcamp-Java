@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.boardcamp.api.dto.CustomErrorResponse;
 
-
-
-
 @RestControllerAdvice
 public class GlobalExceptionsHandler {
     @ExceptionHandler(GameConflictException.class)
@@ -28,10 +25,21 @@ public class GlobalExceptionsHandler {
 
     @ExceptionHandler(EmptyNameException.class)
     public ResponseEntity<CustomErrorResponse> handleEmptyNameException(EmptyNameException ex) {
-        CustomErrorResponse errorResponse = new CustomErrorResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(), ex.getMessage());
+        CustomErrorResponse errorResponse = new CustomErrorResponse(HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
-    
+
+    @ExceptionHandler(ConflictException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<String> handleConflictException(ConflictException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(EmptyFieldException.class)
+    public ResponseEntity<String> handleEmptyFieldException(EmptyFieldException ex) {
+
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }
-
-
