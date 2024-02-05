@@ -10,6 +10,7 @@ import com.boardcamp.api.dto.GamesDTO;
 import com.boardcamp.api.exceptions.EmptyNameException;
 import com.boardcamp.api.exceptions.GameConflictException;
 import com.boardcamp.api.exceptions.NegativeValueException;
+import com.boardcamp.api.exceptions.ResourceNotFoundException;
 import com.boardcamp.api.model.GamesModel;
 import com.boardcamp.api.repositories.GameRepository;
 
@@ -67,6 +68,11 @@ public class GameService {
                 savedGame.getImage(),
                 savedGame.getStockTotal(),
                 savedGame.getPricePerDay());
+    }
+
+    public GamesModel getGameById(Long gameId) {
+        return gameRepository.findById(gameId)
+                .orElseThrow(() -> new ResourceNotFoundException("Game not found with id: " + gameId));
     }
 
 }
