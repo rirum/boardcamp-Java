@@ -1,6 +1,6 @@
 package com.boardcamp.api.model;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,21 +14,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tweets")
+@Table(name = "games")
 
 public class GamesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "image")
     private String image;
+    @Column(name = "stockTotal")
     private int stockTotal;
+    @Column(name = "pricePerDay")
     private int pricePerDay;
-
-
-
- 
 
     public GamesModel(String name, String image, int stockTotal, int pricePerDay) {
         this.name = name;
@@ -36,8 +36,6 @@ public class GamesModel {
         this.stockTotal = stockTotal;
         this.pricePerDay = pricePerDay;
     }
-
- 
 
     public Long getId() {
         return id;
