@@ -1,10 +1,12 @@
 package com.boardcamp.api.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.dto.CustomerDTO;
 import com.boardcamp.api.exceptions.ConflictException;
 import com.boardcamp.api.exceptions.EmptyFieldException;
+import com.boardcamp.api.exceptions.ResourceNotFoundException;
 import com.boardcamp.api.model.CustomerModel;
 import com.boardcamp.api.repositories.CustomerRepository;
 
@@ -38,5 +40,10 @@ public class CustomerService {
         if (customerRepository.existsByCpf(cpf)) {
             throw new ConflictException("Customer with this CPF already exists");
         }
+    }
+
+    public CustomerModel getCustomerById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
     }
 }
