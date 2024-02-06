@@ -1,7 +1,9 @@
 package com.boardcamp.api.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,5 +40,11 @@ public class RentalsController {
     public ResponseEntity<List<RentalResponseDTO>> getAllRentals() {
         List<RentalResponseDTO> rentals = rentalService.getAllRentals();
         return ResponseEntity.ok(rentals);
+    }
+
+    @PutMapping("/{id}/return")
+    public ResponseEntity<RentalResponseDTO> returnRental(@PathVariable Long id) {
+        RentalResponseDTO rentalResponseDTO = rentalService.returnRental(id);
+        return ResponseEntity.ok(rentalResponseDTO);
     }
 }

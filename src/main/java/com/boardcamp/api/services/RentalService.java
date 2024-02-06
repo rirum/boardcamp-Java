@@ -13,6 +13,8 @@ import com.boardcamp.api.exceptions.EmptyFieldException;
 import com.boardcamp.api.exceptions.GameUnavailableException;
 import com.boardcamp.api.exceptions.InvalidGameIdException;
 import com.boardcamp.api.exceptions.NegativeValueException;
+import com.boardcamp.api.exceptions.ResourceNotFoundException;
+import com.boardcamp.api.exceptions.UnprocessableEntityException;
 import com.boardcamp.api.model.CustomerModel;
 import com.boardcamp.api.model.GamesModel;
 import com.boardcamp.api.model.RentalModel;
@@ -89,5 +91,28 @@ public class RentalService {
         return rentals.stream()
                 .map(RentalResponseDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public RentalResponseDTO returnRental(Long id) {
+        RentalModel rentalModel = rentalRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Rental not found with id: " + id));
+
+        if (rentalModel.getReturnDate() != null) {
+            throw new UnprocessableEntityException("Rental is already returned.");
+        }
+
+        LocalDate returnDate = LocalDate.now();
+        rentalModel.setReturnDate(returnDate);
+
+        LocalDate rentDate = rentalModel.getRentDate();
+        int daysRented = rentalModel.getDaysRented();
+        int pricePerDay = rentalModel.getGame().getPricePerDay();
+        int delayDays = (int) returnDate.datesUntil(rentDate.plusDays(daysRented)).count();
+        int delayFee = Math.max(0, delayDays * pricePerDay);
+
+        rentalModel.setDelayFee(delayFee);
+
+        RentalModel savedRental = rentalRepository.save(rentalModel);
+        return new RentalResponseDTO(savedRental);
     }
 }
