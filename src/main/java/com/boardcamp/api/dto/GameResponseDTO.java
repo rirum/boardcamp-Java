@@ -1,5 +1,16 @@
 package com.boardcamp.api.dto;
 
+import com.boardcamp.api.model.GamesModel;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class GameResponseDTO {
     private Long id;
     private String name;
@@ -7,13 +18,12 @@ public class GameResponseDTO {
     private int stockTotal;
     private int pricePerDay;
 
-
-    public GameResponseDTO(Long id, String name, String image, int stockTotal, int pricePerDay) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.stockTotal = stockTotal;
-        this.pricePerDay = pricePerDay;
+    public GameResponseDTO(GamesModel gamesModel) {
+        this.id = gamesModel.getId();
+        this.name = gamesModel.getName();
+        this.image = gamesModel.getImage();
+        this.stockTotal = gamesModel.getStockTotal();
+        this.pricePerDay = gamesModel.getPricePerDay();
     }
 
     public Long getId() {

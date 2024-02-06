@@ -33,12 +33,8 @@ public class GameService {
 
     private GameResponseDTO convertToDto(GamesModel gameModel) {
 
-        return new GameResponseDTO(
-                gameModel.getId(),
-                gameModel.getName(),
-                gameModel.getImage(),
-                gameModel.getStockTotal(),
-                gameModel.getPricePerDay());
+        return new GameResponseDTO(gameModel);
+
     }
 
     @Transactional
@@ -62,12 +58,7 @@ public class GameService {
 
         GamesModel savedGame = gameRepository.save(gameModel);
 
-        return new GameResponseDTO(
-                savedGame.getId(),
-                savedGame.getName(),
-                savedGame.getImage(),
-                savedGame.getStockTotal(),
-                savedGame.getPricePerDay());
+        return new GameResponseDTO(savedGame);
     }
 
     public GamesModel getGameById(Long gameId) {

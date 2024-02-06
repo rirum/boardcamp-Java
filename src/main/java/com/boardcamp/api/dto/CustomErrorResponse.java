@@ -11,5 +11,4 @@ public class CustomErrorResponse {
         this.message = message;
     }
 
-    // Getters e setters
 }

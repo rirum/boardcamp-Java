@@ -1,11 +1,14 @@
 package com.boardcamp.api.services;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.dto.RentalDTO;
+import com.boardcamp.api.dto.RentalResponseDTO;
 import com.boardcamp.api.exceptions.EmptyFieldException;
 import com.boardcamp.api.exceptions.GameUnavailableException;
 import com.boardcamp.api.exceptions.InvalidGameIdException;
@@ -79,5 +82,12 @@ public class RentalService {
 
     private int calculateOriginalPrice(int pricePerDay, int daysRented) {
         return pricePerDay * daysRented;
+    }
+
+    public List<RentalResponseDTO> getAllRentals() {
+        List<RentalModel> rentals = rentalRepository.findAll();
+        return rentals.stream()
+                .map(RentalResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }

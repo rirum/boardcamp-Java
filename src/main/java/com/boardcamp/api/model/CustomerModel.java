@@ -23,13 +23,4 @@ public class CustomerModel {
     private String name;
     private String cpf;
 
-    // public CustomersModel(String name, String cpf){
-    // this.name = name;
-    // this.cpf = cpf;
-    // }
-
-    // public Long getId(){
-    // return id;
-    // }
-
 }
