@@ -37,43 +37,43 @@ public class GamesModel {
         this.pricePerDay = pricePerDay;
     }
 
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    // return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // public void setId(Long id) {
+    // this.id = id;
+    // }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    // return name;
+    // }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public void setName(String name) {
+    // this.name = name;
+    // }
 
-    public String getImage() {
-        return image;
-    }
+    // public String getImage() {
+    // return image;
+    // }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+    // public void setImage(String image) {
+    // this.image = image;
+    // }
 
-    public int getStockTotal() {
-        return stockTotal;
-    }
+    // public int getStockTotal() {
+    // return stockTotal;
+    // }
 
-    public void setStockTotal(int stockTotal) {
-        this.stockTotal = stockTotal;
-    }
+    // public void setStockTotal(int stockTotal) {
+    // this.stockTotal = stockTotal;
+    // }
 
-    public int getPricePerDay() {
-        return pricePerDay;
-    }
+    // public int getPricePerDay() {
+    // return pricePerDay;
+    // }
 
-    public void setPricePerDay(int pricePerDay) {
-        this.pricePerDay = pricePerDay;
-    }
+    // public void setPricePerDay(int pricePerDay) {
+    // this.pricePerDay = pricePerDay;
+    // }
 }
