@@ -44,7 +44,7 @@ public class RentalModel {
     private CustomerModel customer;
 
     @ManyToOne
-    @JoinColumn(name = "game_Id", nullable = false)
+    @JoinColumn(name = "gameId", nullable = false)
     private GamesModel game;
 
 }
