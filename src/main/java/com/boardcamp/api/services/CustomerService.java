@@ -37,6 +37,10 @@ public class CustomerService {
     }
 
     private void validateCpf(String cpf) {
+        if (cpf == null || cpf.length() != 11) {
+            throw new IllegalArgumentException("CPF must have exactly 11 digits");
+        }
+
         if (customerRepository.existsByCpf(cpf)) {
             throw new ConflictException("Customer with this CPF already exists");
         }
