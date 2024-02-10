@@ -128,4 +128,4 @@ Para executar este projeto em desenvolvimento, é necessário seguir os passos a
 - Clonar o repositório;
 - Compile o projeto `mvn clean install`
 - Em seguida, criar o arquivo .env com base no arquivo .env.example
-- Execute ApiApplication.java (localizado em src/main/java/com/boardcamp/demo/) com jdk 17
+- Execute DemoApplication.java (localizado em src/main/java/com/boardcamp/demo/) com jdk 17
