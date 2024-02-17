@@ -64,13 +64,13 @@ public class RentalService {
             throw new NegativeValueException("DaysRented should be greater than 0");
         }
 
-        if (rentalDTO.getGameId() <= 0) {
-            throw new InvalidGameIdException("gameId should be greater than 0");
-        }
-
         if (rentalDTO.getCustomerId() == null || rentalDTO.getGameId() == null) {
             throw new EmptyFieldException("CustomerId and GameId cannot be null");
         }
+
+        if (rentalDTO.getGameId() <= 0) {
+            throw new InvalidGameIdException("gameId should be greater than 0");
+        }       
     }
 
     private void validateGameAvailability(GamesModel game) {
