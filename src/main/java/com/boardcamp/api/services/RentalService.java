@@ -105,9 +105,18 @@ public class RentalService {
         rentalModel.setReturnDate(returnDate);
 
         LocalDate rentDate = rentalModel.getRentDate();
+
         int daysRented = rentalModel.getDaysRented();
         int pricePerDay = rentalModel.getGame().getPricePerDay();
-        int delayDays = (int) returnDate.datesUntil(rentDate.plusDays(daysRented)).count();
+
+        LocalDate expectedReturnDate = rentDate.plusDays(daysRented);
+
+        int delayDays = 0;
+
+        if (returnDate.isAfter(expectedReturnDate)) {
+            delayDays = (int) ChronoUnit.DAYS.between(expectedReturnDate, returnDate);
+        }
+
         int delayFee = Math.max(0, delayDays * pricePerDay);
 
         rentalModel.setDelayFee(delayFee);
