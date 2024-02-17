@@ -31,7 +31,7 @@ public class CustomerService {
     }
 
     private void validateFields(CustomerDTO dto) {
-        if (dto.getName() == null || dto.getName().isEmpty() || dto.getCpf() == null || dto.getCpf().isEmpty()) {
+        if (dto.getName() == null || dto.getName().isEmpty()) {
             throw new EmptyFieldException("Name and CPF must not be null or empty");
         }
     }
